@@ -23,6 +23,11 @@ body {
     overflow-x: hidden;
 }
 
+input {
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+}
+
 .center {
     display: flex;
     justify-content: center;
@@ -35,14 +40,84 @@ body {
     align-items: center;
 }
 
+.space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.bold {
+    font-weight: 500 !important;
+}
+
 .wrap {
     flex-wrap: wrap;
 }
 
 .mr-10 {
-    margin: 10px;
+    margin-right: 10px;
+}
+
+.ml-10 {
+    margin-left: 10px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+
+.ml-30 {
+    margin-left: 30px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
 }
 
 .down-press{
     animation: downPress 0.3s;
+}
+
+.inlarge:hover {
+    font-size: 30px !important;
+    font-weight: 500 !important;
+}
+
+.inlarge-little:hover {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+}
+
+.float-animation {
+    animation: float 6s infinite;
+}
+
+.button-border {
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 10px;
 }

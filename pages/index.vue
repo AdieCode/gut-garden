@@ -6,33 +6,34 @@
 
         <!-- middle section of nav bar -->
         <div class="nav-options">
-            <div class="nav-option">
+            <div class="nav-option inlarge">
                 Why
             </div>
-            <div class="nav-option">
+            <div class="nav-option inlarge">
                 How
             </div>
-            <div class="nav-option">
+            <div class="nav-option inlarge">
                 Pricing
             </div>
-            <div class="nav-option">
+            <div class="nav-option inlarge">
                 Help
             </div>
-            <div class="nav-option">
+            <div class="nav-option inlarge">
                 Contact
             </div>
         </div>
 
         <!-- login button -->
-        <border-button text="Login" class="mr-10"/>
+        <border-button text="Get started" width="180" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
     </nav> 
 
     <section class="first-section space-evenly">
         <div class="description">
             <h1>Let’s fix your diet</h1>
             <p>GutGarden is a revolutionary web application designed to empower users with personalized nutrition tailored to them.</p>
+            <border-button text="Get Started" width="200" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
         </div>
-        <div class="image">
+        <div class="image float-animation">
             <img src="~/assets/images/avocado.webp" alt="" srcset="">
         </div>
     </section>
@@ -40,6 +41,12 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
+
+function toLogin() {
+    router.push("/auth/login");
+}
 
 </script>
 
@@ -67,6 +74,7 @@ nav {
     font-size: 24px;
     font-weight: 200;
     padding: 0px 20px;
+    margin: 0 1px;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -74,8 +82,6 @@ nav {
 .nav-option:hover{
     transform: translateY(3px);
     padding: 3px 10px;
-    font-size: 30px;
-    font-weight: 500;
 }
 
 .first-section{
@@ -88,6 +94,7 @@ nav {
 .description {
     min-width: 400px;
     max-width: 500px;
+    line-height: 1.5;
 }
 
 .description h1{
@@ -99,6 +106,7 @@ nav {
 .description p{
     font-size: 24px;
     font-weight: 300;
+    margin-bottom: 25px;
 }
 
 .image img{
