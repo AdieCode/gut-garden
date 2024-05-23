@@ -4,6 +4,8 @@
     --primary-color: #ffffff;
     --bg-color: #262626;
     --accent-color: #ffffff;
+    --error-color: #FF8181;
+    --success-color: #62FF71;
 }
 
 * {
@@ -94,9 +96,22 @@ input {
     margin-bottom: 20px;
 }
 
+.mb-30 {
+    margin-bottom: 30px;
+}
+
 .mb-40 {
     margin-bottom: 40px;
 }
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.mb-60 {
+    margin-bottom: 60px;
+}
+
 
 .down-press{
     animation: downPress 0.3s;

@@ -9,12 +9,11 @@
         <!-- for user Auth -->
         <div class="login-container center column mt-20">
             <h1 class="mb-40">Login</h1>
-            <form @submit.prevent="validateForm">
-                    <div>
+            <form>
+                    <div class="mb-40">
                         <border-edit label="Email" placeholder="Email" width="390" height="50"/>
                     </div>
-                    <br>
-                    <br>
+
                     <div class="password">
                         <border-edit label="Password" placeholder="Password" width="390" height="50" type="password"/>
                         <img src="~assets/images/eye.webp" alt="eye">
@@ -29,6 +28,8 @@
                 </div>
                 <divider-line text="or login with" width="330" class="mt-30 mb-20"/>
             </form>
+
+            <!-- OAuth options -->
             <div class="other-login space-between">
                 <div class="other-login-options button-border space-evenly mr-10">
                     <img src="~assets/images/google.webp" alt="">
@@ -56,6 +57,10 @@ function toMain() {
 
 function toSignUp() {
     router.push("/auth/sign-up");
+}
+
+function validateForm() {
+    console.log('hello')
 }
 </script>
 

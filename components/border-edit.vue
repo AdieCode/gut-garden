@@ -1,5 +1,5 @@
 <template>
-    <div class="edit-container">
+    <div class="edit-container" id="inputId">
         <input :type="type" class="edit" :placeholder="placeholder"
             :style="{
                 'min-width': width + 'px',
@@ -9,9 +9,11 @@
                 border: '1px solid ' + border,
                 background: bg,
                 'font-size': fontSize + 'px'
-            }">
+            }" 
+            @focus="isSelected = true" 
+            @blur="isSelected = false" >
         </input>
-        <div class="label">
+        <div class="label" :class="isSelected ? 'label-active' : 'label'">
             <span>{{ label }}</span>
         </div>
     </div>
@@ -29,7 +31,9 @@ const props = defineProps({
     border: { type: String, default: 'var(--accent-color)' },
     bg: { type: String, default: 'var(--bg-color)' },
     fontSize: { type: String, default: '24' },
-})
+});
+
+const isSelected = ref(false);
 
 </script>
 
@@ -38,16 +42,19 @@ const props = defineProps({
 
     position: relative;
 }
-input:-webkit-autofill {
-  background-color: var(--bg-color)  !important; /* Set your background color */
-  color: var(--primary-color) !important; /* Set your text color */
-}
+
 .edit {
     border-radius: 10px;
-    font-weight: 200;
+    font-weight: 300;
     transition: 0.1s;
     padding: 0px 15px;
-    color: var(--primary-color);
+    outline: none;
+    color: var(--primary-color) !important;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg-color) inset;
+    -webkit-text-fill-color: var(--primary-color) !important;
 }
 
 .edit:hover .label{
@@ -61,9 +68,18 @@ input:-webkit-autofill {
     font-weight: 300;
     top: -12px;
     left: 10px;
-    border-radius: 2px;
+    border-radius: 4px;
 }
 
+.label-active{
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    font-weight: 600;
+}
+
+.label span{
+    opacity: 0.7;
+}
 /* .edit:focus-within{
     background-color: #ffffff32 !important;
 } */
