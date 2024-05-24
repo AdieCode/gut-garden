@@ -34,15 +34,15 @@
             <border-button text="Get Started" width="200" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
         </div>
         <div class="image float-animation">
-            <img src="~/assets/images/avocado.webp" alt="" srcset="">
+            <!-- <img src="~/assets/images/avocado.webp" alt="" srcset=""> -->
             
+            <image-container :imageSource="avocadoImageSource" width="500" height="auto"/>
         </div>
     </section>
-    <image-container :imageSource="imageSource" />
 </template>
 
 <script setup>
-import imageSource from '@/assets/images/avocado.webp';
+import avocadoImageSource from '@/assets/images/avocado.webp';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
