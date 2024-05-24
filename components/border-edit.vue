@@ -6,15 +6,23 @@
                 'max-width': width + 'px',
                 'min-height': height + 'px',
                 'max-height': height + 'px',
-                border: '1px solid ' + border,
+                border: '1px solid ' + ( notification.length > 0 ? errorStyle : border),
                 background: bg,
-                'font-size': fontSize + 'px'
+                'font-size': fontSize + 'px',
             }" 
             @focus="isSelected = true" 
             @blur="isSelected = false" >
         </input>
+
+        <!-- edit label -->
         <div class="label" :class="isSelected ? 'label-active' : 'label'">
             <span>{{ label }}</span>
+        </div>
+
+        <!-- edit notification -->
+        <div class="notification wrong center" v-if="notification.length > 0">
+            <img src="~assets/icons/attention-96.png" alt="">
+            <span>{{ notification }}</span>
         </div>
     </div>
 </template>
@@ -31,15 +39,16 @@ const props = defineProps({
     border: { type: String, default: 'var(--accent-color)' },
     bg: { type: String, default: 'var(--bg-color)' },
     fontSize: { type: String, default: '24' },
+    notification: { type: String, default: '' },
 });
 
 const isSelected = ref(false);
+const errorStyle = 'var(--error-color)';
 
 </script>
 
 <style lang="css" scoped>
 .edit-container{
-
     position: relative;
 }
 
@@ -54,7 +63,7 @@ const isSelected = ref(false);
 
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px var(--bg-color) inset;
-    -webkit-text-fill-color: var(--primary-color) !important;
+    -webkit-text-fill-color: var(--primary-color) ;
 }
 
 .edit:hover .label{
@@ -77,12 +86,27 @@ input:-webkit-autofill {
     font-weight: 600;
 }
 
-.label span{
-    opacity: 0.7;
+.notification{
+    position: absolute;
+    top:55px;
+    right: 10px;
+    z-index: -1;
+    font-size: 14px;
+    /* border: 1px solid var(--error-color);
+    border-radius: px; */
 }
-/* .edit:focus-within{
-    background-color: #ffffff32 !important;
-} */
 
+.notification img{
+    width: 20px;
+    height: auto;
+    margin-top: 2px;
+    margin-right: 4px;
+}
+
+.wrong {
+    color: var(--error-color);
+    padding: 0 10px;
+    font-weight: 600;
+}
 
 </style>

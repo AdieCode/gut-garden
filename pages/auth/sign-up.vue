@@ -12,16 +12,16 @@
             <form autocomplete="off">
                 <divider-line text="username" width="330" class="mt-10 mb-30"/>
                 <div class="mb-50">
-                    <border-edit label="Username" placeholder="Username" width="390" height="50" class="mb-30"/>
+                    <border-edit label="Username" placeholder="Username" width="390" height="50" class="mb-30" notification="*already taken"/>
                 </div>
                 <divider-line text="email" width="330" class="mt-10 mb-30"/>
                 <div class="mb-50">
-                    <border-edit label="Email" placeholder="Email" width="390" height="50" class="mb-30"/>
-                    <border-edit label="Confirm email" placeholder="Confirm email" width="390" height="50"/>
+                    <border-edit label="Email" placeholder="Email" width="390" height="50" class="mb-30" notification="emails  don't match"/>
+                    <border-edit label="Confirm email" placeholder="Confirm email" width="390" height="50" notification="emails don't  match"/>
                 </div>
                 <divider-line text="password" width="330" class="mt-10 mb-30"/>
                 <div class="password" >
-                    <border-edit label="Password" placeholder="Password" width="390" height="50"class="mb-30"/>
+                    <border-edit label="Password" placeholder="Password" width="390" height="50"class="mb-30" autocomplete="password"/>
                     <border-edit label="Confirm password" placeholder="Confirm password" width="390" height="50"/>
                     <!-- <img src="~assets/images/eye.webp" alt="eye"> -->
                 </div>

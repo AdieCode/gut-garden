@@ -35,8 +35,10 @@
         </div>
         <div class="image float-animation">
             <img src="~/assets/images/avocado.webp" alt="" srcset="">
+            
         </div>
     </section>
+    <image-container imageSrouce="~/assets/images/avocado.webp"/>
 </template>
 
 <script setup>
