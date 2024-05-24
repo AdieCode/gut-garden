@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img :src="imageSrouce" alt="">
+        <img :src="imageSource" alt="">
     </div>
 </template>
 
@@ -8,7 +8,10 @@
 import { defineProps } from 'vue';
 
 const props = defineProps({
-    imageSrouce: { type: String, default: '' },
+    imageSource: { type: String, default: '' },
 });
-
 </script>
+
+<style scoped>
+/* Your styles here */
+</style>

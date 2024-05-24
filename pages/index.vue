@@ -38,10 +38,11 @@
             
         </div>
     </section>
-    <image-container imageSrouce="~/assets/images/avocado.webp"/>
+    <image-container :imageSource="imageSource" />
 </template>
 
 <script setup>
+import imageSource from '@/assets/images/avocado.webp';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
