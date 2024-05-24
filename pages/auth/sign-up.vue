@@ -12,17 +12,23 @@
             <form autocomplete="off">
                 <divider-line text="username" width="330" class="mt-10 mb-30"/>
                 <div class="mb-50">
-                    <border-edit label="Username" placeholder="Username" width="390" height="50" class="mb-30" notification="*already taken"/>
+                    <border-edit label="Username" placeholder="Username" width="390" height="50" class="mb-30" notification=""/>
                 </div>
                 <divider-line text="email" width="330" class="mt-10 mb-30"/>
                 <div class="mb-50">
-                    <border-edit label="Email" placeholder="Email" width="390" height="50" class="mb-30" notification="emails  don't match"/>
-                    <border-edit label="Confirm email" placeholder="Confirm email" width="390" height="50" notification="emails don't  match"/>
+                    <border-edit label="Email" placeholder="Email" width="390" height="50" class="mb-40" :triger="addValueEmail"/>
+                    <border-edit label="Confirm email" placeholder="Confirm email" width="390" height="50" :notification="emailNotification" :triger="addValueAndVerifyEmail"/>
                 </div>
                 <divider-line text="password" width="330" class="mt-10 mb-30"/>
                 <div class="password" >
-                    <border-edit label="Password" placeholder="Password" width="390" height="50"class="mb-30" autocomplete="password"/>
-                    <border-edit label="Confirm password" placeholder="Confirm password" width="390" height="50"/>
+                    <div class="password">
+                        <border-edit label="Password" placeholder="Password" width="390" height="50"class="mb-40" :type="firstPasswordType" :notification="passwordNotification" :triger="addValuePassword"/>
+                        <img src="~assets/images/eye.webp" alt="eye" @click="passwordFirstToggle">
+                    </div>
+                    <div class="password">
+                        <border-edit label="Confirm password" placeholder="Confirm password" width="390" height="50" :type="secondPasswordType" :notification="passwordConfirmNotification" :triger="addValueAndVerifyPassword"/>
+                        <img src="~assets/images/eye.webp" alt="eye" @click="passwordSecondToggle">
+                    </div>
                     <!-- <img src="~assets/images/eye.webp" alt="eye"> -->
                 </div>
                 <br>    
@@ -42,6 +48,36 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
 
+const firstPasswordType = ref('password');
+const secondPasswordType = ref('password');
+
+const usernameText = ref('');
+const emailText = ref('');
+const emailConfrimText = ref('');
+const passwordText = ref('');
+const passwordConfirmText = ref('');
+
+const emailNotification = ref('');
+const passwordNotification = ref('');
+const passwordConfirmNotification = ref('');
+
+function passwordFirstToggle(){
+    if (firstPasswordType.value === 'password'){
+        firstPasswordType.value = 'text'
+    } else {
+        firstPasswordType.value = 'password'
+    }
+}
+
+
+function passwordSecondToggle(){
+    if (secondPasswordType.value === 'password'){
+        secondPasswordType.value = 'text'
+    } else {
+        secondPasswordType.value = 'password'
+    }
+}
+
 function toLogin() {
     router.push("/auth/login");
 }
@@ -49,6 +85,76 @@ function toLogin() {
 function submitForm() {
     router.push("/auth/login");
 }
+
+function addValueEmail (value){
+    emailText.value = value;
+    compareEmail()
+}
+
+function addValueAndVerifyEmail (value) {
+    emailConfrimText.value = value;
+    compareEmail();
+}
+
+function addValuePassword (value) {
+    passwordText.value = value;
+    if (checkPassword(value)) {
+        comparePasswords()
+    }
+}
+
+function addValueAndVerifyPassword (value) {
+    passwordConfirmText.value = value;
+    comparePasswords()
+}
+
+function verifyEmail (value) {
+    if (emailText.value !== emailConfrimText.value) {
+        emailNotification.value = 'email does not match'
+    } else {
+        emailNotification.value = ''
+    }
+}
+
+function checkPassword(password) {
+    const specialCharacterRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    const numberRegex = /[0-9]/;
+    const minLength = 6;
+
+    if (!specialCharacterRegex.test(password)) {
+        passwordNotification.value = 'Password must contain at least one special character.';
+        return false
+    } else if (!numberRegex.test(password)) {
+        passwordNotification.value = 'Password must contain at least one number.';
+        return false
+    } else if (password.length < minLength) {
+        passwordNotification.value = 'Password must be at least 6 characters long.';
+        return false
+    } else {
+        passwordNotification.value = '';
+        return true
+    }
+}
+
+
+function compareEmail () {
+
+    if (emailText.value !== emailConfrimText.value) {
+        emailNotification.value = 'email does not match'
+    } else {
+        emailNotification.value = ''
+    }
+}
+
+function comparePasswords () {
+    if (passwordText.value !== passwordConfirmText.value) {
+        passwordConfirmNotification.value = 'password does not match'
+    } else {
+        passwordConfirmNotification.value = ''
+    }
+}
+
+
 
 </script>
 
@@ -69,5 +175,18 @@ function submitForm() {
 
 .auth-container{
     width: 100%;
+}
+
+.password{
+    position: relative;
+}
+
+.password img{
+    position: absolute;
+    top: 4px;
+    right: -70px;
+    width: 40px;
+    height: auto;
+    cursor: pointer;
 }
 </style>

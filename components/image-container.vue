@@ -8,13 +8,13 @@
                 'max-height': height + 'px',
             }"
         >
-        <div v-if="imageSource"
+        <div v-if="!imageSource"
+        class="background"
         :style="{
                 'min-width': width + 'px',
                 'max-width': width + 'px',
                 'min-height': height + 'px',
                 'max-height': height + 'px',
-                background: 'var(--accent-color)',
             }"
             >
 
@@ -23,7 +23,6 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
 
 const props = defineProps({
     imageSource: { type: String, default: '' },
@@ -33,5 +32,7 @@ const props = defineProps({
 </script>
 
 <style scoped>
-/* Your styles here */
+.background {
+    background-color: var(--primary-color);
+}
 </style>

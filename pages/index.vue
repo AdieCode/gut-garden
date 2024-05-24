@@ -35,7 +35,6 @@
         </div>
         <div class="image float-animation">
             <!-- <img src="~/assets/images/avocado.webp" alt="" srcset=""> -->
-            
             <image-container :imageSource="avocadoImageSource" width="500" height="auto"/>
         </div>
     </section>

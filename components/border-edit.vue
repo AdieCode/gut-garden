@@ -1,15 +1,17 @@
 <template>
     <div class="edit-container" id="inputId">
         <input :type="type" class="edit" :placeholder="placeholder"
+        v-model="text"
             :style="{
                 'min-width': width + 'px',
                 'max-width': width + 'px',
                 'min-height': height + 'px',
                 'max-height': height + 'px',
-                border: '1px solid ' + ( notification.length > 0 ? errorStyle : border),
+                border: notification.length > 0 ? '1px solid ' + errorStyle : (correct ? '1px solid var(--success-color)' : '1px solid ' + border),
                 background: bg,
                 'font-size': fontSize + 'px',
             }" 
+            @input="trigerFunftion"
             @focus="isSelected = true" 
             @blur="isSelected = false" >
         </input>
@@ -40,10 +42,22 @@ const props = defineProps({
     bg: { type: String, default: 'var(--bg-color)' },
     fontSize: { type: String, default: '24' },
     notification: { type: String, default: '' },
+    correct: { type: Boolean, default: false },
+    triger: Function
 });
 
 const isSelected = ref(false);
 const errorStyle = 'var(--error-color)';
+const text = ref('');
+
+function trigerFunftion (){
+    try {
+        props.triger(text.value)
+    } catch {
+        console.log('edit has no function or function does not work')
+    }
+}
+
 
 </script>
 
@@ -99,7 +113,7 @@ input:-webkit-autofill {
 .notification img{
     width: 20px;
     height: auto;
-    margin-top: 2px;
+    /* margin-top: 2px; */
     margin-right: 4px;
 }
 
@@ -108,5 +122,10 @@ input:-webkit-autofill {
     padding: 0 10px;
     font-weight: 600;
 }
+
+.correct {
+    border: 1px solid var(--success-color);
+}
+
 
 </style>
