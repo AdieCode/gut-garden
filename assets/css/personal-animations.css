@@ -18,3 +18,18 @@
         transform: translateY(0);
     }
 }
+
+@keyframes fade-out-left {
+    0%{
+        transform: translateX(0);
+    }
+    35%{
+        transform: translateX(30px);
+        opacity: 1;
+    }
+    100%{
+        transform: translateX(-300px);
+        opacity: 0;
+
+    }
+}

@@ -15,8 +15,9 @@
                     </div>
 
                     <div class="password">
-                        <border-edit label="Password" placeholder="Password" width="390" height="50" type="password"/>
-                        <img src="~assets/images/eye.webp" alt="eye">
+                        <border-edit label="Password" placeholder="Password" width="390" height="50" :type="passwordType"/>
+                        <img v-if="passwordType === 'password'" src="~assets/images/eye.webp" alt="eye" @click="passwordToggle">
+                        <img v-else src="~assets/images/eye-invisible.png" alt="eye" @click="passwordToggle">
                     </div>
                     <br>    
 
@@ -49,6 +50,8 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+
+const passwordType = ref('password');
 const router = useRouter()
 
 function toMain() {
@@ -62,6 +65,15 @@ function toSignUp() {
 function validateForm() {
     console.log('hello')
 }
+
+function passwordToggle(){
+    if (passwordType.value === 'password'){
+        passwordType.value = 'text'
+    } else {
+        passwordType.value = 'password'
+    }
+}
+
 </script>
 
 <style lang="css" scoped>

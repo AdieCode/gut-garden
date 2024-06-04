@@ -76,7 +76,7 @@ nav {
     font-size: 24px;
     font-weight: 200;
     padding: 0px 20px;
-    margin: 0 1px;
+    /* margin: 0 1px; */
     transition: 0.2s;
     cursor: pointer;
 }

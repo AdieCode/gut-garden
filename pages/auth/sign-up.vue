@@ -23,11 +23,13 @@
                 <div class="password" >
                     <div class="password">
                         <border-edit label="Password" placeholder="Password" width="390" height="50"class="mb-40" :type="firstPasswordType" :notification="passwordNotification" :triger="addValuePassword"/>
-                        <img src="~assets/images/eye.webp" alt="eye" @click="passwordFirstToggle">
+                        <img v-if="firstPasswordType === 'password'" src="~assets/images/eye.webp" alt="eye" @click="passwordFirstToggle">
+                        <img v-else src="~assets/images/eye-invisible.png" alt="eye" @click="passwordFirstToggle">
                     </div>
                     <div class="password">
                         <border-edit label="Confirm password" placeholder="Confirm password" width="390" height="50" :type="secondPasswordType" :notification="passwordConfirmNotification" :triger="addValueAndVerifyPassword"/>
-                        <img src="~assets/images/eye.webp" alt="eye" @click="passwordSecondToggle">
+                        <img v-if="secondPasswordType === 'password'" src="~assets/images/eye.webp" alt="eye" @click="passwordSecondToggle">
+                        <img v-else src="~assets/images/eye-invisible.png" alt="eye" @click="passwordSecondToggle">
                     </div>
                     <!-- <img src="~assets/images/eye.webp" alt="eye"> -->
                 </div>
@@ -136,7 +138,6 @@ function checkPassword(password) {
     }
 }
 
-
 function compareEmail () {
 
     if (emailText.value !== emailConfrimText.value) {
@@ -153,8 +154,6 @@ function comparePasswords () {
         passwordConfirmNotification.value = ''
     }
 }
-
-
 
 </script>
 
@@ -173,8 +172,9 @@ function comparePasswords () {
     cursor: pointer;
 }
 
-.auth-container{
+.signup-container{
     width: 100%;
+    /* animation: fade-out-left 1s 3s forwards; */
 }
 
 .password{
