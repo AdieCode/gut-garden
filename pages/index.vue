@@ -1,64 +1,65 @@
 
 <template>
-    <nav v-if="isLargeScreen">
-        <!-- logo -->
-        <img src="/assets/images/logo-img.webp" alt="logo" class="logo">
-
-        <!-- middle section of nav bar -->
-        <div class="nav-options">
-            <div class="nav-option inlarge">
-                Why
+    <div>
+        <nav v-if="isLargeScreen">
+            <!-- logo -->
+            <img src="/assets/images/logo-img.webp" alt="logo" class="logo">
+    
+            <!-- middle section of nav bar -->
+            <div class="nav-options">
+                <div class="nav-option inlarge">
+                    Why
+                </div>
+                <div class="nav-option inlarge">
+                    How
+                </div>
+                <div class="nav-option inlarge">
+                    Pricing
+                </div>
+                <div class="nav-option inlarge">
+                    Help
+                </div>
+                <div class="nav-option inlarge">
+                    Contact
+                </div>
             </div>
-            <div class="nav-option inlarge">
-                How
-            </div>
-            <div class="nav-option inlarge">
-                Pricing
-            </div>
-            <div class="nav-option inlarge">
-                Help
-            </div>
-            <div class="nav-option inlarge">
-                Contact
-            </div>
-        </div>
-
-        <!-- login button -->
-        <border-button :text="buttonText" width="180" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
-    </nav> 
-
-    <nav v-else>
-        <!-- logo -->
-        <img src="/assets/images/logo-img.webp" alt="logo" class="logo">
-
-        <!-- middle section of nav bar -->
-         <div class="center column end">
-
-             <img src="/assets/icons/menu.svg" alt="menu" class="menu" @click="toggleMenu">
-             <div class="nav-options column" v-if="showMenu">
-                 <nuxt-link to="" class="nav-option inlarge">Why</nuxt-link>
-                 <nuxt-link to="" class="nav-option inlarge">How</nuxt-link>
-                 <nuxt-link to="" class="nav-option inlarge">Pricing</nuxt-link>
-                 <nuxt-link to="" class="nav-option inlarge">Help</nuxt-link>
-                 <nuxt-link to="" class="nav-option inlarge">Contact</nuxt-link>
-                 <border-button :text="'Login'" width="180" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
+    
+            <!-- login button -->
+            <border-button :text="buttonText" width="180" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
+        </nav> 
+    
+        <nav v-else>
+            <!-- logo -->
+            <img src="/assets/images/logo-img.webp" alt="logo" class="logo">
+    
+            <!-- middle section of nav bar -->
+             <div class="center column end">
+    
+                 <img src="/assets/icons/menu.svg" alt="menu" class="menu" @click="toggleMenu">
+                 <div class="nav-options column" v-if="showMenu">
+                     <nuxt-link to="" class="nav-option inlarge">Why</nuxt-link>
+                     <nuxt-link to="" class="nav-option inlarge">How</nuxt-link>
+                     <nuxt-link to="" class="nav-option inlarge">Pricing</nuxt-link>
+                     <nuxt-link to="" class="nav-option inlarge">Help</nuxt-link>
+                     <nuxt-link to="" class="nav-option inlarge">Contact</nuxt-link>
+                     <border-button :text="'Login'" width="180" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
+                 </div>
              </div>
-         </div>
-        
-        <!-- login button -->
-    </nav> 
-
-    <section class="first-section space-evenly">
-        <div class="description">
-            <h1>Let’s fix your diet</h1>
-            <p>GutGarden is a revolutionary web application designed to empower users with personalized nutrition tailored to them.</p>
-            <border-button :text="buttonText" width="200" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
-        </div>
-        <div class="image float-animation">
-            <!-- <img src="~/assets/images/avocado.webp" alt="" srcset=""> -->
-            <image-container :imageSource="avocadoImageSource" width="500" height="auto"/>
-        </div>
-    </section>
+            
+            <!-- login button -->
+        </nav> 
+    
+        <section class="first-section space-evenly">
+            <div class="description">
+                <h1>Let’s fix your diet</h1>
+                <p>GutGarden is a revolutionary web application designed to empower users with personalized nutrition tailored to them.</p>
+                <border-button :text="buttonText" width="200" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
+            </div>
+            <div class="image float-animation">
+                <image-container :imageSource="avocadoImageSource" width="500" height="auto"/>
+            </div>
+        </section>
+    </div>
 </template>
 
 <script setup>
@@ -107,12 +108,13 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     z-index: 3;
     position: fixed;
     top: 0;
     left: 0;
     background-color: var(--bg-color);
+    /* background-color: aqua; */
 }
 
 .menu{
@@ -153,14 +155,16 @@ nav {
 
 .first-section{
     display: flex;
-    width: 100vw;
+    min-width: 100vw !important;
+    /* background-color: aqua; */
+    height: auto;
     overflow-x: hidden;
     margin-top: 100px;
     padding: 0 20px;
 }
 
 .description {
-    min-width: 400px;
+    /* min-width: 400px; */
     max-width: 500px;
     line-height: 1.5;
 }
@@ -178,7 +182,14 @@ nav {
 }
 
 .image img{
-    width: 500px;
+    max-width: 500px;
     height: auto;
+}
+
+@media (max-width: 600px) {
+    .first-section {
+        flex-direction: column-reverse;
+        align-items: center; /* Center content in column layout */
+    }
 }
 </style>
