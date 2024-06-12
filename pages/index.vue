@@ -80,7 +80,7 @@ watch(() => authStore.isAuthenticated, (isAuth) => {
 
 
 const checkScreenSize = () => {
-    isLargeScreen.value = window.innerWidth > 600;
+    isLargeScreen.value = window.innerWidth > 1100;
 };
 
 function toggleMenu () {
