@@ -153,7 +153,7 @@ nav {
 
 .first-section{
     display: flex;
-    width: 100vh;
+    width: 100%;
     margin-top: 100px;
     padding: 0 20px;
 }
