@@ -154,6 +154,7 @@ nav {
 .first-section{
     display: flex;
     width: 100vw;
+    overflow-x: hidden;
     margin-top: 100px;
     padding: 0 20px;
 }
