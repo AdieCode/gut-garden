@@ -1,12 +1,12 @@
 
 <template>
-    <div>
-        <nav v-if="isLargeScreen">
+    <div class="full-width">
+        <nav v-if="isLargeScreen" class="center space-between">
             <!-- logo -->
             <img src="/assets/images/logo-img.webp" alt="logo" class="logo">
     
             <!-- middle section of nav bar -->
-            <div class="nav-options">
+            <div class="center space-between">
                 <div class="nav-option inlarge">
                     Why
                 </div>
@@ -28,7 +28,7 @@
             <border-button :text="buttonText" width="180" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
         </nav> 
     
-        <nav v-else>
+        <nav v-else class="center space-between">
             <!-- logo -->
             <img src="/assets/images/logo-img.webp" alt="logo" class="logo">
     
@@ -36,7 +36,7 @@
              <div class="center column end">
     
                  <img src="/assets/icons/menu.svg" alt="menu" class="menu" @click="toggleMenu">
-                 <div class="nav-options column" v-if="showMenu">
+                 <div class="nav-options center column" v-if="showMenu">
                      <nuxt-link to="" class="nav-option inlarge">Why</nuxt-link>
                      <nuxt-link to="" class="nav-option inlarge">How</nuxt-link>
                      <nuxt-link to="" class="nav-option inlarge">Pricing</nuxt-link>
@@ -49,7 +49,7 @@
             <!-- login button -->
         </nav> 
     
-        <section class="first-section space-evenly">
+        <section class="first-section center space-evenly ml-20 mr-20">
             <div class="description">
                 <h1>Let’s fix your diet</h1>
                 <p>GutGarden is a revolutionary web application designed to empower users with personalized nutrition tailored to them.</p>
@@ -105,15 +105,9 @@ onUpdated(() => {
 
 <style scoped>
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
-    z-index: 3;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: var(--bg-color);
+    /* z-index: 3; */
+    /* background-color: var(--warning-color); */
     /* background-color: aqua; */
 }
 
@@ -128,22 +122,17 @@ nav {
 .logo {
     width: 200px;
     height: auto;
-    margin-left: 10px;
     cursor: pointer;
 }
 
 .nav-options {
-    position: relative;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 .nav-option {
     font-size: 24px;
     font-weight: 200;
     padding: 0px 20px;
-    /* margin: 0 1px; */
     transition: 0.2s;
     cursor: pointer;
 }
@@ -154,13 +143,9 @@ nav {
 }
 
 .first-section{
-    display: flex;
-    min-width: 100vw !important;
-    /* background-color: aqua; */
-    height: auto;
-    overflow-x: hidden;
+    width: 100%;
     margin-top: 100px;
-    padding: 0 20px;
+    /* overflow: hidden; */
 }
 
 .description {
@@ -186,7 +171,7 @@ nav {
     height: auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .first-section {
         flex-direction: column-reverse;
         align-items: center; /* Center content in column layout */

@@ -20,11 +20,11 @@ body {
     color: var(--primary-color);
     background-color: var(--bg-color);
     font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
+    /* font-optical-sizing: auto; */
     font-weight: 400;
     font-style: normal;
-    overflow: hidden;
-    width: 100vh;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .dot{
@@ -38,6 +38,10 @@ body {
 input {
     font-family: "Raleway", sans-serif;
     font-weight: 400;
+}
+
+.full-width{
+    max-width: 100%;
 }
 
 .wrap{
@@ -184,4 +188,8 @@ input {
 
 .less-visible {
     opacity: 0.7;
+}
+
+.bg-red {
+    background-color: var(--error-color);
 }

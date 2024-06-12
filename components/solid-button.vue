@@ -1,16 +1,18 @@
 <template>
-<div class="button center" @click="triger"
-    :style="{
-        'min-width': width + 'px',
-        'max-width': width + 'px',
-        'min-height': height + 'px',
-        'max-height': height + 'px',
-        color: color,
-        background: bg,
-        'font-size': fontSize + 'px'
-    }">
-    {{ text }}   
-</div>
+    <div>   
+        <div class="button center" @click="triger"
+            :style="{
+                'min-width': width + 'px',
+                'max-width': width + 'px',
+                'min-height': height + 'px',
+                'max-height': height + 'px',
+                color: color,
+                background: bg,
+                'font-size': fontSize + 'px'
+            }">
+            {{ text }}   
+        </div>
+    </div>
 </template>
 
 <script setup>
