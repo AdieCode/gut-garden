@@ -49,11 +49,13 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
+const authStore = useAuthStore();
+const notificationStore = useNotificationStore();
 
 const firstPasswordType = ref('password');
 const secondPasswordType = ref('password');
 
-const usernameText = ref('');
+const usernameText = ref('fdsdfs');
 const emailText = ref('');
 const emailConfrimText = ref('');
 const passwordText = ref('');
@@ -62,6 +64,12 @@ const passwordConfirmText = ref('');
 const emailNotification = ref('');
 const passwordNotification = ref('');
 const passwordConfirmNotification = ref('');
+
+const usernameCorrect = ref(true);
+const emailMacthes = ref(false);
+// const passwordCorrect = ref(false);
+const passwordMacthes = ref(false);
+
 
 function passwordFirstToggle(){
     if (firstPasswordType.value === 'password'){
@@ -85,6 +93,13 @@ function toLogin() {
 }
 
 function submitForm() {
+    if (usernameCorrect && emailMacthes && passwordMacthes){
+        const isSignedUp = authStore.signUp(usernameText.value, emailConfrimText.value, passwordConfirmText.value)
+
+        if (isSignedUp) {
+            notificationStore.addNotification('Sign up failed');
+        }
+    }
     router.push("/auth/login");
 }
 
@@ -142,16 +157,20 @@ function compareEmail () {
 
     if (emailText.value !== emailConfrimText.value) {
         emailNotification.value = 'email does not match'
+        emailMacthes.value = false;
     } else {
         emailNotification.value = ''
+        emailMacthes.value = true;
     }
 }
 
 function comparePasswords () {
     if (passwordText.value !== passwordConfirmText.value) {
         passwordConfirmNotification.value = 'password does not match'
+        passwordMacthes.value = false;
     } else {
         passwordConfirmNotification.value = ''
+        passwordMacthes.value = true;
     }
 }
 

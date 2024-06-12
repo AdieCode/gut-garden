@@ -11,11 +11,11 @@
             <h1 class="mb-40">Login</h1>
             <form>
                     <div class="mb-40">
-                        <border-edit label="Email" placeholder="Email" width="390" height="50"/>
+                        <border-edit label="Email" placeholder="Email" width="390" height="50" :triger="addValueEmail"/>
                     </div>
 
                     <div class="password">
-                        <border-edit label="Password" placeholder="Password" width="390" height="50" :type="passwordType"/>
+                        <border-edit label="Password" placeholder="Password" width="390" height="50" :type="passwordType" :triger="addValuePassword"/>
                         <img v-if="passwordType === 'password'" src="~assets/images/eye.webp" alt="eye" @click="passwordToggle">
                         <img v-else src="~assets/images/eye-invisible.png" alt="eye" @click="passwordToggle">
                     </div>
@@ -24,7 +24,7 @@
                 <!-- <hr class="spacing-line" /> -->
                 <divider-line width="330" class="mt-10 mb-20"/>
                 <div class="auth-options space-between">
-                    <solid-button text="Login" width="260" height="60" class="mr-10 bold" fontSize="24" :triger="toMain"/>
+                    <solid-button text="Login" width="260" height="60" class="mr-10 bold" fontSize="24" :triger="validateForm"/>
                     <border-button text="Sign up" width="140" height="60" class="bold" fontSize="24" :triger=" toSignUp"/>
                 </div>
                 <divider-line text="or login with" width="330" class="mt-30 mb-20"/>
@@ -50,20 +50,42 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+const authStore = useAuthStore();
+const notificationStore = useNotificationStore();
+// we could also extract the data, but it's already present in the store
 
 const passwordType = ref('password');
+const email = ref('');
+const password = ref('');
+
+function addValueEmail(value) {
+    email.value = value;
+}
+
+function addValuePassword(value) {
+    password.value = value;
+}
+
 const router = useRouter()
 
-function toMain() {
+async function toMain() {
     router.push("/");
+
 }
 
 function toSignUp() {
     router.push("/auth/sign-up");
 }
 
-function validateForm() {
-    console.log('hello')
+async function validateForm() {
+    const isAuth = await authStore.login(email.value, password.value)
+    if (isAuth) {
+        router.push("/");
+        notificationStore.addNotification('Login successful', 'success');
+    } else {
+        notificationStore.addNotification('Login failed', 'error');
+    }
 }
 
 function passwordToggle(){
@@ -72,6 +94,32 @@ function passwordToggle(){
     } else {
         passwordType.value = 'password'
     }
+}
+
+// Function to handle user login
+async function loginUser(email, password) {
+  try {
+    // Make a POST request to your login endpoint
+    const response = await axios.post(`http://localhost:3001/login`, { email, password });
+
+    // Check if the response contains a token
+    const token = response.data.token;
+    if (token) {
+      // If a token is received, store it in local storage
+    if(process.client) {
+        localStorage.setItem("token", token)
+    }
+      // Redirect the user to the main page or wherever you want them to go after successful login
+      router.push("/main"); // Assuming you have imported and defined `router` from vue-router
+    } else {
+      // Handle the case where no token is received
+      console.error('No token received after login');
+    }
+  } catch (error) {
+    // Handle login error
+    console.error('Error logging in:', error.response.data);
+    // You can display an error message to the user here
+  }
 }
 
 </script>

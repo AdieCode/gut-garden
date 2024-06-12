@@ -5,6 +5,7 @@
     --bg-color: #262626;
     --accent-color: #ffffff;
     --error-color: #FF8181;
+    --warning-color: #E9FF62;
     --success-color: #62FF71;
 }
 
@@ -25,14 +26,32 @@ body {
     overflow-x: hidden;
 }
 
+.dot{
+    width: 4px;
+    height: 4px;
+    border-radius: 100%;
+    background-color: var(--accent-color);
+    margin: 3px 6px;
+}
+
 input {
     font-family: "Raleway", sans-serif;
     font-weight: 400;
 }
 
+.wrap{
+    flex-wrap: wrap;
+}
+
 .center {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -52,6 +71,11 @@ input {
     flex-direction: column;
 }
 
+.end{
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
 .bold {
     font-weight: 500 !important;
 }
@@ -62,6 +86,10 @@ input {
 
 .mr-10 {
     margin-right: 10px;
+}
+
+.mr-20 {
+    margin-right: 20px;
 }
 
 .ml-10 {
@@ -86,6 +114,18 @@ input {
 
 .mt-30 {
     margin-top: 30px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.mt-60 {
+    margin-top: 60px;
 }
 
 .mb-10 {
@@ -131,8 +171,16 @@ input {
     animation: float 6s infinite;
 }
 
+.float {
+    animation: floatAnimation 2s ease-in-out infinite;
+  }
+
 .button-border {
     border: 1px solid var(--primary-color);
     border-radius: 10px;
     padding: 10px;
+}
+
+.less-visible {
+    opacity: 0.7;
 }
