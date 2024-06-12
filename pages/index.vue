@@ -107,7 +107,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100dvh;
+    width: 100vw;
     z-index: 3;
     position: fixed;
     top: 0;
@@ -153,7 +153,7 @@ nav {
 
 .first-section{
     display: flex;
-    width: 100dvh;
+    width: 100vw;
     margin-top: 100px;
     padding: 0 20px;
 }
