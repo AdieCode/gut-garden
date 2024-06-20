@@ -1,27 +1,27 @@
 <template>
     <div :class="{'no-scroll': isMenuVisible}">
-      <nav class="center space-between hide-x-overflow">
+      <nav class="center space-between hide-x-overflow bg">
         <!-- logo -->
         <img src="~/assets/images/logo-img.webp" alt="logo" class="logo">
       
         <!-- middle section of nav bar -->
         <div :class="['center', 'space-between', 'nav-options', { 'visible': isMenuVisible }]">
-          <div @click="toggleMenu" class="close-btn mr-20 second-btn"><img src="~/assets/icons/wrong-white.png" alt="close menu icon"></div>
+          <div @click="toggleMenu" class="close-btn mr-15 second-btn"><img src="~/assets/icons/wrong-white.png" alt="close menu icon"></div>
 
           <div class="nav-option inlarge">
-            Why
+            <span>Why</span>
           </div>
           <div class="nav-option inlarge">
-            How
+            <span>How</span>
           </div>
           <div class="nav-option inlarge">
-            Pricing
+            <span>Pricing</span>
           </div>
           <div class="nav-option inlarge">
-            Help
-          </div>
+            <span>Help</span>
+         </div>
           <div class="nav-option inlarge">
-            Contact
+            <span>Contact</span>
           </div>
           <border-button :text="buttonText" width="160" height="60" class="mt-10 second-btn" fontSize="24" :triger="toLogin"/>
         </div>
@@ -39,8 +39,8 @@
           <p>GutGarden is a revolutionary web application designed to empower users with personalized nutrition tailored to them.</p>
           <border-button :text="buttonText" width="200" height="60" class="mr-10" fontSize="24" :triger="toLogin"/>
         </div>
-        <div class="image center">
-          <img src="/assets/images/avocado.webp" alt="">
+        <div class="image">
+          <img src="/assets/images/avocado.webp" class=" ml-10" alt="avocado img">
         </div>
       </section>
     </div>
@@ -55,7 +55,7 @@ const buttonText = ref('Get Started');
 const isMenuVisible = ref(false);
 
 function toLogin() {
-    router.push("/auth/login");
+    router.push("/dashboard");
 }
 
 function toggleMenu() {
@@ -71,7 +71,7 @@ buttonText.value = isAuth ? 'Dashboard' : 'Get Started';
 <style scoped>
 
 nav {
-    padding: 20px 0px;
+    /* padding: 20px 0px; */
     z-index: 3;
     position: fixed;
     width: 100%;
@@ -94,17 +94,18 @@ nav {
     cursor: pointer;
 }
 
+.close-btn{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 20px 0px;
+}
+
 .first-section{
     padding-top: 200px;
     margin: 0px 55px;
 }
 
-.close-btn{
-    position: absolute;
-    top: 10px;
-    right: 0px;
-    padding: 20px 0px;
-}
 
 .close-btn img{
     width: 36px;
@@ -125,6 +126,10 @@ nav {
     padding: 0px 20px;
     transition: 0.2s;
     cursor: pointer;
+}
+
+.nav-option span {
+    pointer-events: none;
 }
 
 .nav-option:hover{
@@ -159,6 +164,7 @@ nav {
 @media (max-width: 900px) {
     .first-section {
         padding-top: 100px;
+        margin: 0px 15px;
         flex-direction: column-reverse;
         align-items: center;
     }
@@ -218,10 +224,12 @@ nav {
 
     .description h1{
         font-size: 48px;
+        margin-bottom: 20px;
     }
 
     .description p{
         font-size: 20px;
+        margin-bottom: 15px;
     }
 }
 

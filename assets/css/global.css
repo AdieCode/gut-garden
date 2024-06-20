@@ -114,6 +114,10 @@ input {
     margin-right: 10px;
 }
 
+.mr-15 {
+    margin-right: 15px;
+}
+
 .mr-20 {
     margin-right: 20px;
 }
@@ -212,5 +216,17 @@ input {
 }
 
 .bg-red {
-    background-color: var(--error-color);
+    background-color: var(--error-color) !important;
+}
+
+.text-red {
+    color: var(--error-color);
+}
+
+.text-yellow {
+    color: var(--warning-color);
+}
+
+.text-green {
+    color: var(--success-color);
 }
