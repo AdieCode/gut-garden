@@ -9,10 +9,10 @@
             <solid-button text="Sign out" width="180" height="60" class="mr-10" fontSize="24" :triger="signOut"/>
         </nav> 
         <!-- Slider main container -->
-         <div class="ml-30">
+         <div class="ml-20 mr-30">
 
              <Swiper
-             :slides-per-view=" 2 "
+             :slides-per-view=" 1 "
              :space-between="50"
              :pagination="{ clickable: true }"> 
                  <SwiperSlide v-for="(recipe, index) in recipes" :key="index">
@@ -90,7 +90,6 @@ nav {
     margin-left: 10px;
     cursor: pointer;
 }
-
 
 .recipe {
     max-width: 900px;
