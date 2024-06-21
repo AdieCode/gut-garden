@@ -36,7 +36,7 @@ const props = defineProps({
     label: { type: String, default: 'Default Text' },
     placeholder: { type: String, default: 'Default Text' },
     type: { type: String, default: 'text' },
-    width: { type: String, default: '100' },
+    width: { type: String, default: '390' },
     height: { type: String, default: '50' },
     border: { type: String, default: 'var(--accent-color)' },
     bg: { type: String, default: 'var(--bg-color)' },
@@ -68,7 +68,7 @@ function trigerFunftion (){
 
 .edit {
     border-radius: 10px;
-    font-weight: 300;
+    font-weight: 400;
     transition: 0.1s;
     padding: 0px 15px;
     outline: none;
@@ -126,6 +126,5 @@ input:-webkit-autofill {
 .correct {
     border: 1px solid var(--success-color);
 }
-
 
 </style>

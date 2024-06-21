@@ -3,11 +3,16 @@
         <!-- logo and back button -->
         <div class="auth-top center"> 
             <img src="~/assets/images/logo-img.webp" alt="logo" class="logo">
-            <border-button text="Back" width="180" height="60" class="mr-10" fontSize="24" :triger="toMain"/>
+            <div class="first-view">
+                <solid-button text="Back" width="180" height="60" class="mr-10" fontSize="24" :triger="toMain"/>
+            </div>
+            <div class="second-view">
+                <solid-button text="Back" width="80" height="50" class="mr-10" fontSize="18" :triger="toMain"/>
+            </div>
         </div>
     
         <!-- for user Auth -->
-        <div class="login-container center column mt-20">
+        <div class="login-container center column mt-20 first-view">
             <h1 class="mb-40">Login</h1>
             <form>
                     <div class="mb-40">
@@ -28,6 +33,44 @@
                     <border-button text="Sign up" width="140" height="60" class="bold" fontSize="24" :triger=" toSignUp"/>
                 </div>
                 <divider-line text="or login with" width="330" class="mt-30 mb-20"/>
+            </form>
+
+            <!-- OAuth options -->
+            <div class="other-login space-between">
+                <div class="other-login-options button-border space-evenly mr-10">
+                    <img src="~assets/images/google.webp" alt="">
+                    <span class="ml-10 mr-10">Google</span>
+                </div>
+                <div class="other-login-options button-border space-evenly ml-10">
+                    <img src="~assets/images/github.webp" alt="">
+                    <span class="ml-10 mr-10">Github</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- for user Auth mobile view -->
+         <!-- Yes I made 2, I did this for simplecity -->
+        <div class="mr-auto center column mt-30 second-view">
+            <h1 class="mb-40">Login</h1>
+            <form>
+                <div class="mb-40">
+                    <border-edit label="Email" placeholder="Email" width="260" height="45" fontSize="18" :triger="addValueEmail"/>
+                </div>
+
+                <div class="password">
+                    <border-edit label="Password" placeholder="Password" width="260" height="45" fontSize="18" :type="passwordType" :triger="addValuePassword"/>
+                    <img v-if="passwordType === 'password'" src="~assets/images/eye.webp" alt="eye" @click="passwordToggle">
+                    <img v-else src="~assets/images/eye-invisible.png" alt="eye" @click="passwordToggle">
+                </div>
+                <br>    
+
+                <!-- <hr class="spacing-line" /> -->
+                <divider-line width="220" class="mt-10 mb-20"/>
+                <div class="auth-options space-between">
+                    <solid-button text="Login" width="170" height="50" class="mr-10 bold" fontSize="18" :triger="validateForm"/>
+                    <border-button text="Sign up" width="110" height="50" class="bold" fontSize="18" :triger=" toSignUp"/>
+                </div>
+                <divider-line text="or login with" width="220" class="mt-30 mb-20"/>
             </form>
 
             <!-- OAuth options -->
@@ -125,6 +168,15 @@ async function loginUser(email, password) {
 </script>
 
 <style lang="css" scoped>
+
+.first-view {
+    display: flex;
+}
+
+.second-view {
+    display: none;
+}
+
 .auth-top {
     width: 100%;
     display: flex;
@@ -139,16 +191,7 @@ async function loginUser(email, password) {
     cursor: pointer;
 }
 
-.auth-container{
-    width: 100%;
-}
 
-.login-container{
-    min-width: 400px;
-    max-width: 400px;
-    margin: auto;
-    margin-top: 50px;
-}
 
 .login-container h1{
     font-size: 40px;
@@ -177,4 +220,43 @@ async function loginUser(email, password) {
     font-size: 24px;
     font-weight: 200;
 }
+
+@media (max-width: 700px){
+    .logo {
+        width: 140px;
+        margin-left: 0px;
+        padding-top: 10px;
+    }
+    .first-view {
+        display: none;
+    }
+
+    .second-view {
+        display: flex;
+    }
+
+    .password img{
+        right: -30px;
+    }
+
+    .password img{
+        position: absolute;
+        top: 8px;
+        right: 14px;
+        width: 30px;
+        height: auto;
+        cursor: pointer;
+    }
+
+    .other-login img{
+        width: 25px;
+        height: auto;
+    }
+
+    .other-login-options{
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: 200;
+    }
+ }
 </style>

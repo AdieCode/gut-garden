@@ -45,20 +45,23 @@ function removeNotification (id) {
     opacity: 0; /* Start invisible */
     background-color: var(--error-color);
     animation: showNotification 0.5s ease-out forwards, slideAway 0.6s ease-out 6.5s forwards;
-    }
-    .notification p{
-        width: 200px;
-    height: auto;
-    }
-    .notification img{
-        width: 40px;
+}
+.notification p{
+    width: 200px;
     height: auto;
 }
+
+.notification img{
+    width: 40px;
+    height: auto;
+}
+
 .cancel img{
     width: 28px;
-    padding: 5px;
+    /* padding: 5px; */
     height: auto;
-    }
+}
+
 .cancel{
     transition: 0.3s;
     border-radius: 5px;
@@ -113,5 +116,41 @@ function removeNotification (id) {
         transform: translateX(500px);
         opacity: 0;
     }
+}
+
+@media (max-width: 700px){
+
+    .notifications-display{
+        font-size: 18px;
+        font-weight: 600;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        max-height: 80dvh;
+        /* justify-content: flex-end; */
+    }
+
+    .notification{
+        width: 230px;
+        padding: 8px;
+    }
+    .notification p{
+        width: 145px;
+        font-size: 14px;
+        height: auto;
+        /* background-color: aqua; */
+    }
+
+    .notification img{
+        width: 30px;
+        height: auto;
+    }
+
+    .cancel img{
+        width: 26px;
+        padding: 5px;
+        height: auto;
+    }
+
 }
 </style>

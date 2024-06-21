@@ -213,7 +213,8 @@ nav {
     }
 
     .logo {
-        margin-left: 20px;
+        margin-left: 0px;
+        padding-top: 10px;
         width: 150px;
     }
 
